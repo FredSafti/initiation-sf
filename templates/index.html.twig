@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Bonjour</h1>
+
+<p>{% trans with {'%name%': name} %}welcome{% endtrans %}</p>
+
+<table>
+{% for mandat in liste %}
+    {% if loop.index == 1 %}
+        <tr>
+            {% for key in mandat|keys %}
+            <th>{{key}}</th>
+            {% endfor %}
+        </tr>
+    {% endif %}
+    <tr>
+        <td>{{ mandat.num }}</td>
+        <td>{{ mandat.name }}</td>
+        <td>{{ mandat.id }}</td>
+    </tr>
+{% else %}
+    <tr><td colspan="3">{{ 'empty_list'|trans }}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}
